@@ -1,0 +1,64 @@
+# =========================
+# Angular (Frontend)
+# =========================
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+frontend/.cache/
+frontend/.vscode/
+frontend/*.log
+
+# Angular env files (اختياري)
+frontend/src/environments/environment*.ts
+
+# =========================
+# .NET (Backend)
+# =========================
+backend/bin/
+backend/obj/
+backend/.vs/
+backend/*.user
+backend/*.suo
+backend/*.userosscache
+backend/*.log
+
+# أي build outputs عامة
+bin/
+obj/
+
+# =========================
+# Visual Studio
+# =========================
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# =========================
+# Environment / Secrets
+# =========================
+.env
+.env.*
+appsettings.Development.json
+appsettings.Local.json
+
+# =========================
+# Logs
+# =========================
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# =========================
+# OS Files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Optional (لو مش عايز ترفعهم)
+# =========================
+package-lock.json
+yarn.lock
