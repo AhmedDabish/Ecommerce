@@ -1,26 +1,4 @@
-﻿//using Microsoft.AspNetCore.Http;
-//using Microsoft.AspNetCore.Mvc;
-
-//namespace backend.Controllers
-//{
-//    [Route("api/[controller]")]
-//    [ApiController]
-//    public class CategoriesController : ControllerBase
-
-
-
-
-//        GET    /api/categories                 - كل الفئات
-//GET    /api/categories/{ id }            - تفاصيل فئة
-//POST   /api/categories                 - إضافة فئة(Admin)
-//PUT    /api/categories/{id
-//}
-//-تحديث فئة
-//DELETE /api/categories/{id}            -حذف فئة
-
-//    }
-//}
-
+﻿
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using backend.Models;
