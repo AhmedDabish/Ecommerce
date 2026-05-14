@@ -1,22 +1,4 @@
-﻿//using Microsoft.AspNetCore.Http;
-//using Microsoft.AspNetCore.Mvc;
-//using Microsoft.Extensions.Hosting;
-//using System.Diagnostics;
-
-//namespace backend.Controllers
-//{
-//    [Route("api/[controller]")]
-//    [ApiController]
-//    public class PaymentController : ControllerBase
-//    {
-//    }
-//}
-
-
-
-//POST / api / payment / process - معالجة الدفع
-//POST   /api/payment/webhook            - Webhook من Payment Gateway
-//GET    /api/payment/methods            - طرق الدفع المتاحة
+﻿
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
