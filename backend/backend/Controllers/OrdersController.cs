@@ -1,11 +1,4 @@
-﻿//using System.Threading.Channels;
-
-//POST / api / orders - إنشاء طلب جديد
-//GET    /api/orders/{id}                -تفاصيل طلب
-//GET    /api/orders/user                - طلبات المستخدم
-//PUT    /api/orders/{id}/ cancel - إلغاء طلب
-//GET    /api/orders/{id}/ track - تتبع الطلب
-
+﻿
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using backend.DTOs;
