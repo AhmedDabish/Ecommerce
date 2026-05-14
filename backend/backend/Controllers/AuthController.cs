@@ -1,14 +1,4 @@
-﻿//POST / api / auth / register - تسجيل مستخدم جديد
-//POST   /api/auth/login                 - تسجيل الدخول
-//POST   /api/auth/confirm-email         - تأكيد البريد الإلكتروني
-//POST   /api/auth/forgot-password       - نسيت كلمة المرور
-//POST   /api/auth/reset-password        - إعادة تعيين كلمة المرور
-//POST   /api/auth/refresh-token         - تحديث الـ Token
-//POST   /api/auth/logout                - تسجيل الخروج
-//POST   /api/auth/google-login          - (Bonus) تسجيل دخول Google
-
-
-using backend.DTOs.Auth;
+﻿using backend.DTOs.Auth;
 using backend.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
