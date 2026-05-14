@@ -1,0 +1,23 @@
+<div>
+  <h2 class="page-title">الأرباح</h2>
+  @if (loading) { <p>جاري التحميل…</p> }
+  @else if (earnings) {
+    <div class="earning-cards">
+      <div class="card"><p class="val">{{ earnings.totalEarnings | currencyFormat }}</p><p class="lbl">إجمالي الأرباح</p></div>
+      <div class="card pending"><p class="val">{{ earnings.pendingPayouts | currencyFormat }}</p><p class="lbl">مدفوعات معلقة</p></div>
+    </div>
+    <button class="payout-btn" (click)="requestPayout()" [disabled]="requesting">{{ requesting ? 'جاري الطلب…' : '💸 طلب دفع' }}</button>
+
+    @if (earnings.history?.length) {
+      <h3 class="hist-title">سجل الدفعات</h3>
+      <div class="table-wrap"><table class="table">
+        <thead><tr><th>التاريخ</th><th>المبلغ</th><th>الحالة</th></tr></thead>
+        <tbody>
+          @for (h of earnings.history; track h.id) {
+            <tr><td>{{ h.date | dateFormat:'short' }}</td><td>{{ h.amount | currencyFormat }}</td><td>{{ h.status }}</td></tr>
+          }
+        </tbody>
+      </table></div>
+    }
+  }
+</div>

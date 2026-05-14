@@ -1,0 +1,20 @@
+<div>
+  <h2 class="page-title">طلباتي</h2>
+  @if (loading) { <p>جاري التحميل…</p> }
+  @else if (orders.length === 0) { <p class="empty">لا توجد طلبات بعد</p> }
+  @else {
+    <div class="table-wrap"><table class="table">
+      <thead><tr><th>رقم الطلب</th><th>التاريخ</th><th>الإجمالي</th><th>الحالة</th></tr></thead>
+      <tbody>
+        @for (o of orders; track o.id) {
+          <tr>
+            <td><strong>#{{ o.orderNumber }}</strong></td>
+            <td>{{ o.orderDate | dateFormat:'short' }}</td>
+            <td>{{ o.totalAmount | currencyFormat }}</td>
+            <td><span class="status" [class]="o.status?.toLowerCase()">{{ o.status }}</span></td>
+          </tr>
+        }
+      </tbody>
+    </table></div>
+  }
+</div>

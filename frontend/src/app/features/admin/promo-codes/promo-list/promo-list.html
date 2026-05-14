@@ -1,0 +1,49 @@
+<div>
+  <div class="header"><h2 class="page-title">كوبونات الخصم</h2><button class="btn-add" (click)="openAdd()">+ إضافة كوبون</button></div>
+
+  @if (showForm) {
+    <div class="form-card">
+      <h3>{{ editItem ? 'تعديل الكوبون' : 'كوبون جديد' }}</h3>
+      <div class="grid-2">
+        <div class="field"><label>الكود</label><input [(ngModel)]="f.code" placeholder="SUMMER20" /></div>
+        <div class="field"><label>نوع الخصم</label>
+          <select [(ngModel)]="f.discountType">
+            <option value="Percentage">نسبة مئوية %</option>
+            <option value="FixedAmount">مبلغ ثابت</option>
+          </select>
+        </div>
+        <div class="field"><label>قيمة الخصم</label><input type="number" [(ngModel)]="f.discountValue" /></div>
+        <div class="field"><label>الحد الأدنى للطلب</label><input type="number" [(ngModel)]="f.minimumOrderAmount" /></div>
+        <div class="field"><label>تاريخ البداية</label><input type="date" [(ngModel)]="f.startDate" /></div>
+        <div class="field"><label>تاريخ الانتهاء</label><input type="date" [(ngModel)]="f.endDate" /></div>
+      </div>
+      <div class="field full"><label>الوصف</label><input [(ngModel)]="f.description" /></div>
+      <label class="checkbox-label"><input type="checkbox" [(ngModel)]="f.isActive" /> كوبون نشط</label>
+      <div class="form-actions">
+        <button class="btn-cancel" (click)="showForm=false">إلغاء</button>
+        <button class="btn-save" (click)="save()" [disabled]="saving">{{ saving?'جاري الحفظ…':'حفظ' }}</button>
+      </div>
+    </div>
+  }
+
+  @if (loading) { <p>جاري التحميل…</p> }
+  @else {
+    <div class="table-wrap"><table class="table">
+      <thead><tr><th>الكود</th><th>الخصم</th><th>الاستخدام</th><th>الانتهاء</th><th>الحالة</th><th>إجراءات</th></tr></thead>
+      <tbody>
+        @for (p of promos; track p.id) {
+          <tr>
+            <td><strong>{{ p.code }}</strong></td>
+            <td>{{ p.discountType === 'Percentage' ? p.discountValue + '%' : (p.discountValue | currencyFormat) }}</td>
+            <td>{{ p.usedCount }} / {{ p.maxUsageCount ?? '∞' }}</td>
+            <td>{{ p.endDate | dateFormat:'short' }}</td>
+            <td><span [class]="p.isActive ? 'ok' : 'off'">{{ p.isActive ? 'نشط' : 'معطل' }}</span></td>
+            <td><div class="actions">
+              <button class="btn-del" (click)="delete(p.id)">حذف</button>
+            </div></td>
+          </tr>
+        }
+      </tbody>
+    </table></div>
+  }
+</div>

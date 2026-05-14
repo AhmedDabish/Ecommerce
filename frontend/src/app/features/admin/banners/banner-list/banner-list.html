@@ -1,0 +1,43 @@
+<div>
+  <div class="header"><h2 class="page-title">البانرات</h2><button class="btn-add" (click)="showForm=!showForm">+ إضافة بانر</button></div>
+
+  @if (showForm) {
+    <div class="form-card">
+      <h3>بانر جديد</h3>
+      <div class="grid-2">
+        <div class="field"><label>العنوان</label><input [(ngModel)]="f.title" placeholder="عرض الصيف" /></div>
+        <div class="field"><label>رابط الصورة</label><input [(ngModel)]="f.imageUrl" placeholder="https://..." /></div>
+        <div class="field"><label>رابط الهدف</label><input [(ngModel)]="f.linkUrl" placeholder="/products" /></div>
+        <div class="field"><label>الترتيب</label><input type="number" [(ngModel)]="f.displayOrder" /></div>
+        <div class="field"><label>تاريخ البداية</label><input type="date" [(ngModel)]="f.startDate" /></div>
+        <div class="field"><label>تاريخ الانتهاء</label><input type="date" [(ngModel)]="f.endDate" /></div>
+      </div>
+      <div class="field full"><label>الوصف</label><input [(ngModel)]="f.description" /></div>
+      <label class="checkbox-label"><input type="checkbox" [(ngModel)]="f.isActive" /> نشر البانر</label>
+      <div class="form-actions">
+        <button class="btn-cancel" (click)="showForm=false">إلغاء</button>
+        <button class="btn-save" (click)="save()" [disabled]="saving">{{ saving?'جاري الحفظ…':'حفظ' }}</button>
+      </div>
+    </div>
+  }
+
+  @if (loading) { <p>جاري التحميل…</p> }
+  @else {
+    <div class="banners-grid">
+      @for (b of banners; track b.id) {
+        <div class="banner-card">
+          @if (b.imageUrl) { <img [src]="b.imageUrl" [alt]="b.title" /> }
+          @else { <div class="img-placeholder">🖼️</div> }
+          <div class="info">
+            <p class="title">{{ b.title }}</p>
+            <p class="desc">{{ b.description }}</p>
+            <div class="card-actions">
+              <span [class]="b.isActive ? 'ok' : 'off'">{{ b.isActive ? 'نشط' : 'معطل' }}</span>
+              <button class="btn-del" (click)="delete(b.id)">حذف</button>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

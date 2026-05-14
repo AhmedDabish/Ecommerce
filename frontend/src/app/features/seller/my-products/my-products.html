@@ -1,0 +1,21 @@
+<div>
+  <div class="header"><h2 class="page-title">منتجاتي</h2><a routerLink="/admin/products/add" class="btn-add">+ إضافة منتج</a></div>
+  @if (loading) { <p>جاري التحميل…</p> }
+  @else if (products.length === 0) { <p class="empty">لا توجد منتجات بعد</p> }
+  @else {
+    <div class="table-wrap"><table class="table">
+      <thead><tr><th>الاسم</th><th>السعر</th><th>المخزون</th><th>الحالة</th><th>إجراءات</th></tr></thead>
+      <tbody>
+        @for (p of products; track p.id) {
+          <tr>
+            <td><strong>{{ p.name }}</strong></td>
+            <td>{{ p.price | currencyFormat }}</td>
+            <td>{{ p.stockQuantity }}</td>
+            <td><span [class]="p.isActive ? 'ok' : 'off'">{{ p.isActive ? 'نشط' : 'معطل' }}</span></td>
+            <td><a [routerLink]="['/admin/products/edit', p.id]" class="btn-edit">تعديل</a></td>
+          </tr>
+        }
+      </tbody>
+    </table></div>
+  }
+</div>
