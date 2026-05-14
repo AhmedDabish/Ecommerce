@@ -1,0 +1,25 @@
+<div>
+  <div class="header"><h2 class="page-title">إضافة منتج جديد</h2><a routerLink="/admin/products" class="btn-back">← رجوع</a></div>
+  <form [formGroup]="form" (ngSubmit)="save()" class="form-card">
+    <div class="grid-2">
+      <div class="field"><label>اسم المنتج</label><input formControlName="name" /></div>
+      <div class="field"><label>كود المنتج (SKU)</label><input formControlName="sku" /></div>
+      <div class="field"><label>السعر (جنيه)</label><input type="number" formControlName="price" /></div>
+      <div class="field"><label>سعر الخصم (اختياري)</label><input type="number" formControlName="discountPrice" /></div>
+      <div class="field"><label>الكمية في المخزون</label><input type="number" formControlName="stockQuantity" /></div>
+      <div class="field"><label>الفئة</label>
+        <select formControlName="categoryId">
+          <option [value]="null">اختر فئة</option>
+          @for (c of categories; track c.id) { <option [value]="c.id">{{ c.name }}</option> }
+        </select>
+      </div>
+    </div>
+    <div class="field full"><label>الوصف</label><textarea formControlName="description" rows="4"></textarea></div>
+    <div class="field full"><label>صور المنتج</label><input type="file" accept="image/*" multiple (change)="onFilesChange($event)" /></div>
+    <label class="checkbox-label"><input type="checkbox" formControlName="isActive" /> نشر المنتج</label>
+    <div class="form-actions">
+      <a routerLink="/admin/products" class="btn-cancel">إلغاء</a>
+      <button type="submit" class="btn-save" [disabled]="saving">{{ saving ? 'جاري الحفظ…' : 'إضافة المنتج' }}</button>
+    </div>
+  </form>
+</div>

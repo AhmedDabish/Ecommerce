@@ -1,0 +1,26 @@
+<div>
+  <div class="header"><h2 class="page-title">تعديل المنتج</h2><a routerLink="/admin/products" class="btn-back">← رجوع</a></div>
+  @if (loading) { <p>جاري التحميل…</p> }
+  @else {
+    <form [formGroup]="form" (ngSubmit)="save()" class="form-card">
+      <div class="grid-2">
+        <div class="field"><label>اسم المنتج</label><input formControlName="name" /></div>
+        <div class="field"><label>كود المنتج</label><input formControlName="sku" /></div>
+        <div class="field"><label>السعر</label><input type="number" formControlName="price" /></div>
+        <div class="field"><label>سعر الخصم</label><input type="number" formControlName="discountPrice" /></div>
+        <div class="field"><label>المخزون</label><input type="number" formControlName="stockQuantity" /></div>
+        <div class="field"><label>الفئة</label>
+          <select formControlName="categoryId">
+            @for (c of categories; track c.id) { <option [value]="c.id">{{ c.name }}</option> }
+          </select>
+        </div>
+      </div>
+      <div class="field full"><label>الوصف</label><textarea formControlName="description" rows="4"></textarea></div>
+      <label class="checkbox-label"><input type="checkbox" formControlName="isActive" /> المنتج نشط</label>
+      <div class="form-actions">
+        <a routerLink="/admin/products" class="btn-cancel">إلغاء</a>
+        <button type="submit" class="btn-save" [disabled]="saving">{{ saving ? 'جاري الحفظ…' : 'حفظ التعديلات' }}</button>
+      </div>
+    </form>
+  }
+</div>
