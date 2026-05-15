@@ -1,0 +1,11 @@
+.section-title { font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 24px; }
+.avatar-img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; }
+.avatar-placeholder { width: 80px; height: 80px; border-radius: 50%; background: #dbeafe; color: #1e40af; font-size: 32px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+.form { max-width: 480px; }
+.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.field label { font-size: 13px; font-weight: 500; color: #374151; }
+.field input { padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; outline: none; font-family: inherit; }
+.field input:focus { border-color: #2563eb; }
+.disabled-input { background: #f9fafb; color: #9ca3af; cursor: not-allowed; }
+.save-btn { padding: 11px 28px; background: #2563eb; color: #fff; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; }
+.save-btn:disabled { background: #93c5fd; cursor: not-allowed; }

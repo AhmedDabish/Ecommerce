@@ -1,0 +1,44 @@
+<div>
+  <div class="section-header">
+    <h2 class="section-title">عناويني</h2>
+    <button class="btn-add" (click)="openAdd()">+ إضافة عنوان</button>
+  </div>
+
+  @if (loading) { <p>جاري التحميل…</p> }
+  @else {
+    @if (addresses.length === 0 && !showForm) { <p class="empty">لا توجد عناوين محفوظة</p> }
+    @for (a of addresses; track a.id) {
+      <div class="addr-card">
+        <div class="addr-info">
+          <p class="addr-main">{{ a.street }}، {{ a.city }}، {{ a.state }}</p>
+          <p class="addr-sub">{{ a.country }} - {{ a.zipCode }}</p>
+          @if (a.isDefault) { <span class="default-tag">افتراضي</span> }
+        </div>
+        <div class="addr-actions">
+          <button class="btn-edit" (click)="openEdit(a)">تعديل</button>
+          <button class="btn-del" (click)="delete(a.id)">حذف</button>
+        </div>
+      </div>
+    }
+
+    @if (showForm) {
+      <div class="form-wrap">
+        <h3>{{ editId ? 'تعديل العنوان' : 'عنوان جديد' }}</h3>
+        <form [formGroup]="form" (ngSubmit)="save()">
+          <div class="grid-2">
+            <div class="field"><label>الشارع</label><input formControlName="street" /></div>
+            <div class="field"><label>المدينة</label><input formControlName="city" /></div>
+            <div class="field"><label>المحافظة</label><input formControlName="state" /></div>
+            <div class="field"><label>الرمز البريدي</label><input formControlName="zipCode" /></div>
+            <div class="field"><label>الدولة</label><input formControlName="country" /></div>
+          </div>
+          <label class="checkbox-label"><input type="checkbox" formControlName="isDefault" /> جعله العنوان الافتراضي</label>
+          <div class="form-actions">
+            <button type="button" class="btn-cancel" (click)="showForm = false">إلغاء</button>
+            <button type="submit" class="btn-save" [disabled]="saving">{{ saving ? 'جاري الحفظ…' : 'حفظ' }}</button>
+          </div>
+        </form>
+      </div>
+    }
+  }
+</div>
