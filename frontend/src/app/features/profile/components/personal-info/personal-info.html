@@ -1,0 +1,26 @@
+<div>
+  <h2 class="section-title">Personal Information</h2>
+  @if (loading) { <p>Loading...</p> }
+  @else {
+    @if (user?.profileImage) { <img [src]="user!.profileImage" class="avatar-img" alt="Profile photo" /> }
+    @else { <div class="avatar-placeholder">{{ user?.fullName?.charAt(0)?.toUpperCase() }}</div> }
+
+    <form [formGroup]="form" (ngSubmit)="save()" class="form">
+      <div class="field">
+        <label>Email Address</label>
+        <input [value]="user?.email" disabled class="disabled-input" />
+      </div>
+      <div class="field">
+        <label>Full Name</label>
+        <input formControlName="fullName" placeholder="Your full name" />
+      </div>
+      <div class="field">
+        <label>Phone Number</label>
+        <input formControlName="phoneNumber" placeholder="+1 234 567 8900" />
+      </div>
+      <button type="submit" class="save-btn" [disabled]="saving">
+        {{ saving ? 'Saving...' : 'Save Changes' }}
+      </button>
+    </form>
+  }
+</div>
