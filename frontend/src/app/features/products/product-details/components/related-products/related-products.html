@@ -1,0 +1,8 @@
+@if (products.length) {
+<div class="related">
+  <h3>منتجات مشابهة</h3>
+  <div class="scroll">
+    <app-product-card *ngFor="let p of products" [product]="p" />
+  </div>
+</div>
+}

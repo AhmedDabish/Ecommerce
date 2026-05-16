@@ -1,0 +1,53 @@
+<div class="page">
+  <div class="container">
+    <h1 class="title">Checkout</h1>
+
+    <div class="steps">
+      @for (s of steps; track $index; let i = $index) {
+      <div class="step" [class.done]="step > i+1" [class.active]="step === i+1">
+        <div class="circle">{{ step > i+1 ? '✓' : (i+1) }}</div>
+        <span>{{ s }}</span>
+      </div>
+      @if (i < steps.length-1) {
+      <div class="line" [class.done]="step > i+1"></div>
+      } }
+    </div>
+
+    @if (step === 1) {
+    <app-shipping-address (addressSelected)="onAddressSelected($event)" /> }
+    @else if (step === 2) {
+    <app-payment-method (paymentSelected)="onPaymentSelected($event)" /> } @else
+    if (step === 3) {
+    <div class="review-layout">
+      <div>
+        <app-promo-code (discountApplied)="onPromoApplied($event)" />
+        <app-order-summary
+          [cart]="(cartSvc.cart$ | async)!"
+          [promoDiscount]="promoDiscount"
+        />
+      </div>
+      <div class="review-actions">
+        <button class="btn-back" (click)="step=2">← Change Payment</button>
+        <button
+          class="btn-place"
+          (click)="placeOrder()"
+          [disabled]="placingOrder"
+        >
+          {{ placingOrder ? 'Placing Order...' : '✅ Place Order' }}
+        </button>
+      </div>
+    </div>
+    } @else if (step === 4) {
+    <div class="success">
+      <div class="success-icon">🎉</div>
+      <h2>Order Placed Successfully!</h2>
+      <p>Order Number: <strong>{{ orderNumber }}</strong></p>
+      <p>A confirmation email has been sent to your inbox.</p>
+      <div class="success-actions">
+        <a routerLink="/orders" class="btn-orders">View My Orders</a>
+        <a routerLink="/products" class="btn-continue">Continue Shopping</a>
+      </div>
+    </div>
+    }
+  </div>
+</div>

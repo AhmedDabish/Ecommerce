@@ -1,0 +1,42 @@
+<div class="summary-wrap">
+  <h3>Order Review</h3>
+  <div class="items">
+    @for (item of items; track item.id) {
+    <div class="item">
+      <img [src]="getItemImg(item)" [alt]="item.product?.name" />
+      <div class="item-info">
+        <p class="name">{{ item.product?.name }}</p>
+        <p class="qty">Qty: {{ item.quantity }}</p>
+      </div>
+      <p class="price">
+        {{ ((item.product?.discountPrice ?? item.product?.price ??
+        item.priceAtAdd) * item.quantity) | currencyFormat }}
+      </p>
+    </div>
+    }
+  </div>
+
+  <div class="breakdown">
+    <div class="row">
+      <span>Subtotal</span><strong>{{ subtotal | currencyFormat }}</strong>
+    </div>
+    <div class="row">
+      <span>Shipping</span
+      ><strong
+        >{{ shipping === 0 ? 'FREE' : (shipping | currencyFormat) }}</strong
+      >
+    </div>
+    @if (promoDiscount > 0) {
+    <div class="row discount">
+      <span>Promo Discount</span
+      ><strong>- {{ promoDiscount | currencyFormat }}</strong>
+    </div>
+    }
+    <div class="divider"></div>
+    <div class="row total">
+      <span>Total</span><strong>{{ total | currencyFormat }}</strong>
+    </div>
+  </div>
+
+  <a routerLink="/cart" class="edit-link">← Edit Cart</a>
+</div>
