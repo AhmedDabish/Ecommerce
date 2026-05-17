@@ -384,7 +384,7 @@ using (var scope = app.Services.CreateScope())
                 }
             };
 
-            context.Users.AddRange(users);
+             context.Users.AddRange(users);
             context.SaveChanges();
             Console.WriteLine("✅ Test users seeded!");
         }
