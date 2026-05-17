@@ -1,0 +1,1 @@
+import{Ga as t}from"./chunk-5LRQVE2V.js";var i=class e{transform(r,n="USD"){return r==null?"":new Intl.NumberFormat("en-US",{style:"currency",currency:n,minimumFractionDigits:2}).format(r)}static \u0275fac=function(n){return new(n||e)};static \u0275pipe=t({name:"currencyFormat",type:e,pure:!0})};export{i as a};
