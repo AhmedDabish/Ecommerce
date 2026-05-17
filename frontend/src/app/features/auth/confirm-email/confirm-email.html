@@ -1,0 +1,5 @@
+<div class="auth-page"><div class="auth-card">
+  @if (loading) { <div class="auth-header"><div class="logo">⏳</div><h1>جاري التحقق…</h1></div> }
+  @else if (success) { <div class="auth-header"><div class="logo">✅</div><h1>تم تفعيل البريد!</h1><p>يمكنك الآن تسجيل الدخول</p></div><a routerLink="/auth/login" class="btn-submit" style="display:block;text-align:center;text-decoration:none">تسجيل الدخول</a> }
+  @else { <div class="auth-header"><div class="logo">❌</div><h1>فشل التفعيل</h1><p>{{ error }}</p></div><a routerLink="/auth/register" class="btn-submit" style="display:block;text-align:center;text-decoration:none">العودة للتسجيل</a> }
+</div></div>
