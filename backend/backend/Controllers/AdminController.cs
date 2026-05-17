@@ -52,13 +52,29 @@ namespace backend.Controllers
             return Ok(new { message = "User restricted" });
         }
 
+        //[HttpGet("orders")]
+        //public async Task<IActionResult> GetAllOrders([FromQuery] int page = 1, [FromQuery] int pageSize = 20, [FromQuery] string? status = null)
+        //{
+        //    var orders = await _orderRepo.GetAllOrdersWithDetailsAsync(page, pageSize, status);
+        //    return Ok(orders);
+        //}
         [HttpGet("orders")]
         public async Task<IActionResult> GetAllOrders([FromQuery] int page = 1, [FromQuery] int pageSize = 20, [FromQuery] string? status = null)
         {
             var orders = await _orderRepo.GetAllOrdersWithDetailsAsync(page, pageSize, status);
-            return Ok(orders);
+            var result = orders.Select(o => new {
+                id = o.Id,
+                orderNumber = o.OrderNumber,
+                userId = o.UserId,
+                customerName = o.User != null ? o.User.FullName : $"User #{o.UserId}",
+                orderDate = o.OrderDate,
+                totalAmount = o.TotalAmount,
+                status = o.Status,
+                paymentMethod = o.PaymentMethod,
+                paymentStatus = o.PaymentStatus
+            });
+            return Ok(result);
         }
-
         [HttpPut("orders/{id}/status")]
         public async Task<IActionResult> UpdateOrderStatus(int id, UpdateOrderStatusDto dto)
         {
@@ -85,14 +101,25 @@ namespace backend.Controllers
                 OrderDate = o.OrderDate
             });
 
-            var dashboard = new AdminDashboardDto
+            //var dashboard = new AdminDashboardDto
+            //{
+            //    TotalSales = totalSales,
+            //    TotalOrders = totalOrders,
+            //    TotalUsers = totalUsers,
+            //    TotalProducts = totalProducts,
+            //    PendingOrders = pendingOrders,
+            //    RecentOrders = recentOrders.ToList()
+            //};
+            //return Ok(dashboard);
+            var dashboard = new
             {
-                TotalSales = totalSales,
-                TotalOrders = totalOrders,
-                TotalUsers = totalUsers,
-                TotalProducts = totalProducts,
-                PendingOrders = pendingOrders,
-                RecentOrders = recentOrders.ToList()
+                totalRevenue = totalSales,    // ← الاسم اللي الـ frontend بيقراه
+                totalSales = totalSales,      // backward compat
+                totalOrders = totalOrders,
+                totalUsers = totalUsers,
+                totalProducts = totalProducts,
+                pendingOrders = pendingOrders,
+                recentOrders = recentOrders.ToList()
             };
             return Ok(dashboard);
         }
