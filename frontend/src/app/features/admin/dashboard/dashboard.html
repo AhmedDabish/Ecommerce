@@ -1,0 +1,24 @@
+<div class="dash">
+  <h1 class="title">Dashboard</h1>
+  @if (loading) { <p>Loading...</p> }
+  @else if (stats) {
+    <div class="cards">
+      <div class="stat-card blue"><div class="icon">💰</div><div><p class="val">{{ stats.totalRevenue | currencyFormat }}</p><p class="lbl">Total Revenue</p></div></div>
+      <div class="stat-card green"><div class="icon">📦</div><div><p class="val">{{ stats.totalOrders }}</p><p class="lbl">Total Orders</p></div></div>
+      <div class="stat-card purple"><div class="icon">👥</div><div><p class="val">{{ stats.totalUsers }}</p><p class="lbl">Users</p></div></div>
+      <div class="stat-card orange"><div class="icon">🏷️</div><div><p class="val">{{ stats.totalProducts }}</p><p class="lbl">Products</p></div></div>
+    </div>
+
+    <div class="quick-links">
+      <h3>Quick Actions</h3>
+      <div class="links-grid">
+        <a routerLink="/admin/users" class="quick-link">👥 Manage Users</a>
+        <a routerLink="/admin/products" class="quick-link">🏷️ Manage Products</a>
+        <a routerLink="/admin/orders" class="quick-link">📦 View Orders</a>
+        <a routerLink="/admin/categories" class="quick-link">📂 Categories</a>
+        <a routerLink="/admin/promo-codes" class="quick-link">🎫 Promo Codes</a>
+        <a routerLink="/admin/banners" class="quick-link">🖼️ Banners</a>
+      </div>
+    </div>
+  }
+</div>
