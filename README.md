@@ -376,6 +376,6 @@ This project is built for educational purposes as part of the ITI (Information T
 
 **Built with ❤️ by the team**
 
-Made as part of ITI Graduation Project · 2026
+Made as part of ITI  Project · 2026
 
 </div>
