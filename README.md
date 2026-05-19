@@ -1,5 +1,6 @@
 # 🛍️ E-Commerce Platform
 
+
 A full-stack e-commerce web application built as an ITI  project. Features a modern Angular frontend, ASP.NET Core 8 Web API backend, and SQL Server database. Supports customers, sellers, and admins with complete shopping flow including guest checkout, wallet payments, promo codes, and email notifications.
 
 ---
